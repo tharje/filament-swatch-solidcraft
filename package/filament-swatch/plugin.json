@@ -1,0 +1,43 @@
+{
+  "id": "filament-swatch",
+  "name": "Filament Swatch",
+  "version": "0.1.0",
+  "description": "Filament sample tiles: brand, material, colour and temperatures in text, and thin steps that show how see-through the filament is.",
+  "capabilities": [
+    "commands@0.1"
+  ],
+  "runtime": {
+    "module": "plugin.wasm",
+    "entries": [
+      {
+        "name": "swatch",
+        "effect": "edit",
+        "input_schema": {
+          "type": "object",
+          "required": ["brand", "material", "color", "nozzle_temp", "bed_temp", "steps", "text_style"],
+          "properties": {
+            "brand": {"type": "string", "title": "Brand", "description": "Shown in capitals at the top. Leave empty for none", "maxLength": 30, "default": "Elegoo"},
+            "material": {"type": "string", "title": "Material", "description": "Top right, e.g. PLA, Rapid PETG", "maxLength": 30, "default": "PLA"},
+            "color": {"type": "string", "title": "Colour", "description": "Several colours separated by ; make one swatch each, in a column", "maxLength": 200, "default": "Black"},
+            "nozzle_temp": {"type": "integer", "title": "Nozzle °C", "description": "0 = not shown", "minimum": 0, "maximum": 500, "default": 0},
+            "bed_temp": {"type": "integer", "title": "Bed °C", "description": "0 = not shown", "minimum": 0, "maximum": 500, "default": 0},
+            "steps": {"type": "string", "title": "Steps (mm)", "description": "Thickness of each thin step along the bottom, e.g. 0.2, 0.4, 0.6, 0.8, 1.0 (up to 8). Empty for none", "maxLength": 100, "default": "0.2, 0.4, 0.6, 0.8, 1.0"},
+            "text_style": {"type": "string", "title": "Text", "description": "Cut into the top, or standing up from it", "enum": ["Engraved", "Raised"], "default": "Engraved"},
+            "hole": {"type": "boolean", "title": "Key-ring hole", "description": "5 mm hole in the top left corner", "default": true},
+            "position_x": {"type": "number", "title": "Position X", "description": "Corner of the first swatch", "default": 0, "unit": "mm"},
+            "position_y": {"type": "number", "title": "Position Y", "description": "Corner of the first swatch", "default": 0, "unit": "mm"},
+            "size_x": {"type": "number", "title": "Width", "minimum": 50, "maximum": 200, "default": 75, "unit": "mm"},
+            "size_y": {"type": "number", "title": "Depth", "minimum": 38, "maximum": 100, "default": 40, "unit": "mm"},
+            "text_depth": {"type": "number", "title": "Text depth", "description": "How deep engraved text goes, or how high raised text stands", "minimum": 0.2, "maximum": 2, "default": 0.6, "unit": "mm"},
+            "text_height": {"type": "number", "title": "Text size", "description": "Height of the capitals on the colour line; the brand is a little bigger", "minimum": 2, "maximum": 8, "default": 3.6, "unit": "mm"},
+            "thickness": {"type": "number", "title": "Thickness", "minimum": 1, "maximum": 10, "default": 3, "unit": "mm"},
+            "title": {"type": "string", "title": "Body name", "description": "Leave empty for Swatch and the colour", "maxLength": 60}
+          }
+        },
+        "slots": [{"kind": "menu", "name": "Filament swatch"}]
+      }
+    ],
+    "commands": ["sketch.create", "sketch.rectangle.rounded", "sketch.rectangle.two_point", "sketch.circle.center", "sketch.text", "sketch.finish", "solid.extrude"],
+    "limits": {"fuel": 2000000000, "memory_mib": 64, "deadline_ms": 30000}
+  }
+}

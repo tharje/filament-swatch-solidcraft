@@ -1,0 +1,3 @@
+plugin/wit/plugin.wit is the plugin interface (WIT package craft:plugin@0.1.0) published by
+SolidCraft, https://github.com/tangency-labs/solidcraft, under the Apache License 2.0. It is
+included unchanged so the plugin can be built.
