@@ -345,6 +345,21 @@ pub fn plan(entry: &str, params: &Value) -> Result<(String, Vec<Value>), String>
     }
 }
 
+/// The sketch or feature a command made, from its reply, for the run's timeline folder.
+pub fn made_by(command: &str, reply: &Value) -> Option<Value> {
+    let reply = reply.get("result").filter(|r| r.is_object()).unwrap_or(reply);
+    let id = if command == "sketch.create" { reply.get("sketch") } else { reply.get("feature") };
+    id.filter(|id| id.is_number()).cloned()
+}
+
+/// The folder's name: the swatch's name, or for several, how many there are.
+pub fn folder_name(bodies: &str) -> String {
+    match bodies.matches(", ").count() {
+        0 => bodies.to_string(),
+        n => format!("Filament swatches ({})", n + 1),
+    }
+}
+
 #[cfg(target_arch = "wasm32")]
 mod guest {
     use super::*;
@@ -362,6 +377,7 @@ mod guest {
             let (bodies, cmds) = plan(&entry, &params)
                 .map_err(|reason| PluginError::InvalidInput(FieldFailure { field: entry.clone(), reason }))?;
             let total = cmds.len();
+            let mut made = Vec::new();
             for (i, c) in cmds.iter().enumerate() {
                 // progress and cancel checks are host calls too, and a run may make only 256
                 if i % 16 == 0 {
@@ -370,7 +386,16 @@ mod guest {
                     }
                     control::progress(i as f32 / total as f32, &format!("Swatch: step {} of {total}", i + 1));
                 }
-                commands::run(c["command"].as_str().unwrap_or(""), &c["params"].to_string())?;
+                let name = c["command"].as_str().unwrap_or("");
+                let reply: Value = serde_json::from_str(&commands::run(name, &c["params"].to_string())?).unwrap_or(Value::Null);
+                if let Some(id) = made_by(name, &reply) {
+                    made.push(id);
+                }
+            }
+            // One folder in the timeline, named like the swatches, holds everything the run made.
+            // The swatches are finished by now, so a folder that can't be made doesn't fail the run.
+            if !made.is_empty() {
+                let _ = commands::run("timeline.group", &json!({"name": folder_name(&bodies), "features": made}).to_string());
             }
             Ok(json!({"bodies": bodies, "commands": total}).to_string())
         }
@@ -382,6 +407,15 @@ mod guest {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn what_goes_in_the_folder() {
+        assert_eq!(made_by("sketch.create", &json!({"sketch": 1})), Some(json!(1)));
+        assert_eq!(made_by("solid.extrude", &json!({"result": {"feature": 2}})), Some(json!(2)));
+        assert_eq!(made_by("sketch.text", &json!({"sketch": {"dof": 0}})), None);
+        assert_eq!(folder_name("PLA Red"), "PLA Red");
+        assert_eq!(folder_name("PLA Red, PETG Blue"), "Filament swatches (2)");
+    }
 
     #[test]
     fn defaults() {

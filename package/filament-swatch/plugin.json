@@ -37,7 +37,7 @@
         "slots": [{"kind": "menu", "name": "Filament swatch"}]
       }
     ],
-    "commands": ["sketch.create", "sketch.rectangle.rounded", "sketch.rectangle.two_point", "sketch.circle.center", "sketch.text", "sketch.finish", "solid.extrude"],
+    "commands": ["sketch.create", "sketch.rectangle.rounded", "sketch.rectangle.two_point", "sketch.circle.center", "sketch.text", "sketch.finish", "solid.extrude", "timeline.group"],
     "limits": {"fuel": 2000000000, "memory_mib": 64, "deadline_ms": 30000}
   }
 }
