@@ -5,7 +5,8 @@ tiles: brand, material, colour and print temperatures in text, and a row of thin
 how see-through the filament is at each thickness. Print one per spool and hang them on a ring.
 
 Everything it makes is ordinary SolidCraft features (sketches and extrudes), so you can edit the
-swatch afterwards like anything you drew yourself.
+swatch afterwards like anything you drew yourself. They go in one folder in the History bar, named
+like the swatch.
 
 | A swatch with engraved text | Raised text |
 |---|---|
@@ -25,15 +26,14 @@ swatch afterwards like anything you drew yourself.
 - Text engraved into the top or raised from it.
 - Several colours separated by `;` (`Red; Blue; Green`) make one swatch each, in a column.
 
-> Status: early (0.1.0). Tested with SolidCraft 0.41.0 and 0.42.0 on Linux. On macOS, SolidCraft
-> 0.41 and 0.42 crash when any plugin runs
-> ([SolidCraft issue #16698](https://github.com/tangency-labs/solidcraft/issues/16698)); that is a
-> SolidCraft bug and should be fixed there.
+> Status: early (0.2.0). Tested with SolidCraft 0.42.0 and 0.43.0 on Linux. On macOS, use SolidCraft
+> 0.43 or newer: 0.41 and 0.42 crash there when any plugin runs
+> ([SolidCraft issue #16698](https://github.com/tangency-labs/solidcraft/issues/16698), fixed in 0.43).
 
 ## Install
-Download `filament-swatch-0.1.0.zip` from the [latest release](../../releases/latest), then in
+Download `filament-swatch-0.2.0.zip` from the [latest release](../../releases/latest), then in
 SolidCraft: **Plugins › Install plugin…** and pick the zip. Run it from **Plugins › Filament
-swatch…** (or its button in the ribbon on 0.42).
+swatch…** (or its button in the ribbon).
 
 ## Text takes time
 SolidCraft cuts text letter by letter, and a plugin gets 30 seconds a run. A swatch with
