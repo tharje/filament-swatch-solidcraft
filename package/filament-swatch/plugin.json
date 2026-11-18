@@ -32,9 +32,10 @@
             "text_height": {"type": "number", "title": "Text size", "description": "Height of the capitals on the colour line; the brand is a little bigger", "minimum": 2, "maximum": 8, "default": 3.6, "unit": "mm"},
             "thickness": {"type": "number", "title": "Thickness", "minimum": 1, "maximum": 10, "default": 3, "unit": "mm"},
             "title": {"type": "string", "title": "Body name", "description": "Leave empty for Swatch and the colour", "maxLength": 60}
-          }
+          },
+          "x-solidcraft-icon": "i/swatch.svg"
         },
-        "slots": [{"kind": "menu", "name": "Filament swatch"}]
+        "slots": [{"kind": "menu", "name": "Filament swatch"}, {"kind": "ribbon", "name": "Swatch"}]
       }
     ],
     "commands": ["sketch.create", "sketch.rectangle.rounded", "sketch.rectangle.two_point", "sketch.circle.center", "sketch.text", "sketch.finish", "solid.extrude", "timeline.group"],
