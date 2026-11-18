@@ -1,7 +1,7 @@
 {
   "id": "filament-swatch",
   "name": "Filament Swatch",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Filament sample tiles: brand, material, colour and temperatures in text, and thin steps that show how see-through the filament is.",
   "capabilities": [
     "commands@0.1"
