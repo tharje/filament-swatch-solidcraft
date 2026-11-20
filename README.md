@@ -76,6 +76,8 @@ From a script, inspect the package to get its approval hash, then run the `swatc
 Needs Rust with the `wasm32-unknown-unknown` target and `wasm-tools`. `./build.sh` runs the tests,
 builds the WebAssembly component and writes `package/filament-swatch-<version>.zip`.
 
+`package/filament-swatch/tests/` holds test cases for SolidCraft 0.45 and later. `solidcraft-cli plugin test package/filament-swatch` runs each one on the real host and checks the body count and volume. The tests are left out of the zip.
+
 ## Licence
 MIT, see [LICENSE](LICENSE). The plugin interface in `plugin/wit/` is SolidCraft's (Apache 2.0),
 see [NOTICE](NOTICE).

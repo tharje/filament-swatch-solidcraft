@@ -1,0 +1,13 @@
+{
+  "entry": "swatch",
+  "params": {},
+  "expect": {
+    "model": {
+      "body_count": 1,
+      "total": {
+        "volume_mm3": 7140.128
+      }
+    },
+    "tolerance": 0.0001
+  }
+}
