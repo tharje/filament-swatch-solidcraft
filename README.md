@@ -26,12 +26,12 @@ like the swatch.
 - Text engraved into the top or raised from it.
 - Several colours separated by `;` (`Red; Blue; Green`) make one swatch each, in a column.
 
-> Status: early (0.3.0). Tested with SolidCraft 0.43.0 and 0.44.1 on Linux. On macOS, use SolidCraft
+> Status: early (0.3.1). Tested with SolidCraft 0.43.0, 0.44.1 and 0.45.0 on Linux. On macOS, use SolidCraft
 > 0.43 or newer: 0.41 and 0.42 crash there when any plugin runs
 > ([SolidCraft issue #16698](https://github.com/tangency-labs/solidcraft/issues/16698), fixed in 0.43).
 
 ## Install
-Download `filament-swatch-0.3.0.zip` from the [latest release](../../releases/latest), then in
+Download `filament-swatch-0.3.1.zip` from the [latest release](../../releases/latest), then in
 SolidCraft: **Plugins › Install plugin…** and pick the zip. Run it from **Plugins › Filament
 swatch…**, or its **Swatch** button in the ribbon (with its own icon from SolidCraft 0.44).
 
