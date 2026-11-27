@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "filament-swatch",
+  "name": "Filament Swatch",
+  "kind": "plugin",
+  "version": "0.3.1",
+  "licence": "MIT",
+  "min_app_version": "0.43.0",
+  "summary": "Filament sample tiles: brand, material, colour and temperatures in text, and thin steps that show how see-through it is.",
+  "category": "generators",
+  "tags": ["filament", "swatch", "sample", "3d-printing", "colour"],
+  "permissions": ["commands:sketch", "commands:solid", "commands:timeline"],
+  "files": [
+    { "asset": "filament-swatch-0.3.1.zip", "role": "package" },
+    { "path": "docs/images/swatch.png", "role": "image" },
+    { "path": "docs/images/three-colours.png", "role": "image" },
+    { "path": "docs/images/dialog.png", "role": "image" }
+  ]
+}
